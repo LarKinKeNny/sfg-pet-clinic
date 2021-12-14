@@ -22,19 +22,15 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         var owner = new Owner();
-        owner.setId(1L);
         owner.setFirstName("Micheal");
         owner.setLastName("Weston");
 
         ownerService.save(owner);
 
         var vet = new Vet();
-        vet.setId(1L);
         vet.setFirstName("Sam");
         vet.setLastName("Axe");
 
         vetService.save(vet);
-
-        System.out.println("finished loading bootstrap");
     }
 }

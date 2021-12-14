@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 @Service
-public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
+public class PetServiceMap extends AbstractMapService<Pet> implements PetService {
+
     @Override
     public Pet findById(Long id) {
         return super.findById(id);
@@ -15,7 +16,7 @@ public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetS
 
     @Override
     public Pet save(Pet object) {
-        return super.save(object.getId(), object);
+        return super.save(object);
     }
 
     @Override
