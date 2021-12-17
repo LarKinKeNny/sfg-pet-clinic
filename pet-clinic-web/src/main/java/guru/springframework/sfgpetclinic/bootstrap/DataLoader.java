@@ -2,12 +2,13 @@ package guru.springframework.sfgpetclinic.bootstrap;
 
 import guru.springframework.sfgpetclinic.model.*;
 import guru.springframework.sfgpetclinic.services.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
-
+@Slf4j
 @Component
 public class DataLoader implements CommandLineRunner {
 
@@ -27,12 +28,13 @@ public class DataLoader implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         if(petTypeService.findAll().isEmpty())
             loadData();
     }
 
     private void loadData() {
+        log.debug("Loading data");
         Speciality radiology = new Speciality();
         radiology.setDescription("Radiology");
         Speciality saved1 = specialityService.save(radiology);
@@ -76,5 +78,7 @@ public class DataLoader implements CommandLineRunner {
         vet.getSpecialities().add(saved2);
 
         vetService.save(vet);
+
+        log.debug("data loaded");
     }
 }

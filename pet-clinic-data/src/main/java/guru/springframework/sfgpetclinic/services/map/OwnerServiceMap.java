@@ -5,11 +5,13 @@ import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.PetService;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Slf4j
 @Service
 @Profile({"default", "map"})
 public class OwnerServiceMap extends AbstractMapService<Owner> implements OwnerService {
@@ -24,6 +26,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner> implements OwnerS
 
     @Override
     public Owner findById(Long id) {
+        log.debug("findById id={}", id);
         return super.findById(id);
     }
 

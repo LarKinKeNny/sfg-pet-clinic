@@ -3,12 +3,14 @@ package guru.springframework.sfgpetclinic.services.springdatajpa;
 import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.repositories.PetRepository;
 import guru.springframework.sfgpetclinic.services.PetService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Slf4j
 @Service
 @Profile("jpa")
 public class PetJpaService implements PetService {
@@ -21,6 +23,7 @@ public class PetJpaService implements PetService {
 
     @Override
     public Pet findById(Long id) {
+        log.debug("findById id={}", id);
         return petRepository.findById(id).orElse(null);
     }
 

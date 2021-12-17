@@ -3,12 +3,14 @@ package guru.springframework.sfgpetclinic.services.springdatajpa;
 import guru.springframework.sfgpetclinic.model.Speciality;
 import guru.springframework.sfgpetclinic.repositories.SpecialityRepository;
 import guru.springframework.sfgpetclinic.services.SpecialityService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Slf4j
 @Service
 @Profile("jpa")
 public class SpecialityJpaService implements SpecialityService {
@@ -21,6 +23,7 @@ public class SpecialityJpaService implements SpecialityService {
 
     @Override
     public Speciality findById(Long id) {
+        log.debug("findById id={}", id);
         return specialityRepository.findById(id).orElse(null);
     }
 

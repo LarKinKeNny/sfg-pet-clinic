@@ -3,12 +3,14 @@ package guru.springframework.sfgpetclinic.services.springdatajpa;
 import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.repositories.OwnerRepository;
 import guru.springframework.sfgpetclinic.services.OwnerService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Slf4j
 @Service
 @Profile("jpa")
 public class OwnerJpaService implements OwnerService {
@@ -21,6 +23,7 @@ public class OwnerJpaService implements OwnerService {
 
     @Override
     public Owner findById(Long id) {
+        log.debug("findById id={}", id);
         return ownerRepository.findById(id).orElse(null);
     }
 
