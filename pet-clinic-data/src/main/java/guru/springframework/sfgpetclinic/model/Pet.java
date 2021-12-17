@@ -1,5 +1,6 @@
 package guru.springframework.sfgpetclinic.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -10,7 +11,7 @@ import java.util.Set;
 @Entity
 public class Pet extends BaseEntity {
 
-    @OneToMany(mappedBy = "pet")
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
     private Set<Visit> visits = new HashSet<>();
 
     @ManyToOne
