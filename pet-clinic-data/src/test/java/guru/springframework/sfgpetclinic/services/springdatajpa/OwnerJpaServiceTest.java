@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
@@ -38,39 +37,39 @@ class OwnerJpaServiceTest {
     void findById() {
         when(ownerRepository.findById(eq(id))).thenReturn(Optional.of(owner));
         assertNotNull(ownerJpaService.findById(id));
-        verify(ownerRepository, times(1)).findById(anyLong());
+        verify(ownerRepository).findById(anyLong());
     }
 
     @Test
     void save() {
         when(ownerRepository.save(any(Owner.class))).thenReturn(owner);
         assertEquals(owner, ownerJpaService.save(owner));
-        verify(ownerRepository, times(1)).save(any());
+        verify(ownerRepository).save(any());
     }
 
     @Test
     void findAll() {
         when(ownerRepository.findAll()).thenReturn(Set.of(owner));
         assertFalse(ownerJpaService.findAll().isEmpty());
-        verify(ownerRepository, times(1)).findAll();
+        verify(ownerRepository).findAll();
     }
 
     @Test
     void delete() {
         ownerJpaService.delete(owner);
-        verify(ownerRepository, times(1)).delete(any(Owner.class));
+        verify(ownerRepository).delete(any(Owner.class));
     }
 
     @Test
     void deleteById() {
         ownerJpaService.deleteById(id);
-        verify(ownerRepository, times(1)).deleteById(id);
+        verify(ownerRepository).deleteById(id);
     }
 
     @Test
     void findByLastName() {
         String lastName = "lastName";
         ownerJpaService.findByLastName(lastName);
-        verify(ownerRepository, times(1)).findByLastName(eq(lastName));
+        verify(ownerRepository).findByLastName(eq(lastName));
     }
 }
