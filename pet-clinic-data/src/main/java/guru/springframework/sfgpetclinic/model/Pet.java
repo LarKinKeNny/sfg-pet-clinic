@@ -30,4 +30,9 @@ public class Pet extends BaseEntity {
 
     private LocalDate birthDate;
     private String name;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
