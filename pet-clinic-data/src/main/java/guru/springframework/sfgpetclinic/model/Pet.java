@@ -1,6 +1,7 @@
 package guru.springframework.sfgpetclinic.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,13 +11,22 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@EqualsAndHashCode(callSuper = true)
-@Data
 @Entity
 public class Pet extends BaseEntity {
+
+    @Builder
+    public Pet(Long id, Set<Visit> visits, PetType petType, LocalDate birthDate, String name) {
+        super(id);
+        if(visits != null)
+            this.visits = visits;
+        this.petType = petType;
+        this.birthDate = birthDate;
+        this.name = name;
+    }
 
     @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
     private Set<Visit> visits = new HashSet<>();
@@ -28,7 +38,9 @@ public class Pet extends BaseEntity {
     @ManyToOne
     private Owner owner;
 
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate birthDate;
+
     private String name;
 
     @Override
